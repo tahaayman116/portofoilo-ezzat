@@ -42,9 +42,9 @@ staggerAnimation('.skill-item', 100);
 
 // Super-Modern Magnetic Cursor Logic
 document.addEventListener('DOMContentLoaded', () => {
+    // Super-Modern Magnetic Cursor Logic
     const cursor = document.querySelector('.cursor');
     const magneticItems = document.querySelectorAll('.magnetic-item');
-
     let mouseX = 0;
     let mouseY = 0;
 
@@ -58,32 +58,59 @@ document.addEventListener('DOMContentLoaded', () => {
     magneticItems.forEach(item => {
         let isHovering = false;
         const strength = 0.5; // How strong the pull is
-
         item.addEventListener('mouseenter', () => {
             isHovering = true;
             cursor.classList.add('hover');
         });
-
         item.addEventListener('mouseleave', () => {
             isHovering = false;
             cursor.classList.remove('hover');
             item.style.transform = 'translate(0, 0)';
         });
-
         const animate = () => {
             if (isHovering) {
                 const rect = item.getBoundingClientRect();
                 const itemCenterX = rect.left + rect.width / 2;
                 const itemCenterY = rect.top + rect.height / 2;
-
                 const deltaX = (mouseX - itemCenterX) * strength;
                 const deltaY = (mouseY - itemCenterY) * strength;
-
                 item.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
             }
             requestAnimationFrame(animate);
         };
         animate();
+    });
+
+    // Google Sheets Form Submission Logic
+    const form = document.querySelector('#contact form');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyqx4kn3km_-6-VHNb9fNq7yt1mXl8DdaQZQs4tZeRdvIZFl8fHizidIbd1_JhEmGG8/exec';
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Sending...';
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                if (response.ok) {
+                    submitButton.innerHTML = 'Message Sent! <span class="arrow">&check;</span>';
+                    form.reset();
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                submitButton.innerHTML = 'Error! <span class="arrow">&times;</span>';
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                }, 5000); // Revert button text after 5 seconds
+            });
     });
 });
 
