@@ -186,6 +186,27 @@ nav a:hover {
     transform: translateX(5px);
 }
 
+/* Hero Buttons Container */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Secondary CTA Button Style */
+.cta-button.secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff; /* Ensure text is white and readable */
+}
+
+.cta-button.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
 /* Glass Panels */
 .glass-panel {
     padding: 4rem 0;
