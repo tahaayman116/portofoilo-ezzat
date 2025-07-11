@@ -1,15 +1,20 @@
 {
-  "title": "Mohamed Ezzat | Business Development",
-  "logo_name": "MOHAMED EZZAT",
   "hero_name": "MOHAMED EZZAT",
   "hero_title": "Business Development & E-Commerce Strategist",
   "hero_description": "Crafting innovative business models and driving growth through data-driven strategies.",
-  "cv_filename": "Mohamed ezzat cv.pdf",
   "about_me": "I am a fourth-year E-Commerce student with a developed passion for business development, which has driven me to embark on a journey of learning and reading to become well-versed in all aspects of this field.",
-  "education_degree": "Student at The Higher Institute of E-Commerce Systems",
-  "education_description": "This specialization combines accounting with electronic software that assists in business systems, specifically accounting and administrative programs that keep pace with current technological advancements in the world.",
-  "certifications_title": "Certificates and Courses",
-  "contact_email": "ezzatm768@gmail.com",
-  "contact_phone": "+201507623769",
-  "linkedin_url": "https://www.linkedin.com/in/mohamad-ezzat-16754b28a/"
+  "skills": [
+    { "name": "Business Modeling & Strategy" },
+    { "name": "Customer Analysis" },
+    { "name": "Resource Management" },
+    { "name": "Risk Analysis" },
+    { "name": "Communication" },
+    { "name": "Negotiation" },
+    { "name": "Leadership" },
+    { "name": "Teamwork" },
+    { "name": "Problem-Solving" },
+    { "name": "Adaptability" },
+    { "name": "Time Management" },
+    { "name": "Creativity" }
+  ]
 }
