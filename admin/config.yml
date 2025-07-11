@@ -13,24 +13,12 @@ collections:
         label: "Home Page"
         name: "home"
         fields:
-          - label: "Hero Section"
-            name: "hero_section"
-            widget: "object"
-            hint: "The main content at the top of the page."
-            fields:
-              - {label: "Name", name: "hero_name", widget: "string", hint: "e.g., MOHAMED EZZAT"}
-              - {label: "Headline", name: "hero_title", widget: "string", hint: "e.g., Business Development & E-Commerce Strategist"}
-              - {label: "Sub-headline", name: "hero_description", widget: "string", hint: "A short sentence describing what you do."}
-          - label: "About Section"
-            name: "about_section"
-            widget: "object"
-            hint: "The section that describes you."
-            fields:
-              - {label: "About Me Paragraph", name: "about_me", widget: "markdown", hint: "Write the main paragraph about yourself here."}
-          - label: "Skills & Expertise"
+          - {label: "Hero Name", name: "hero_name", widget: "string", hint: "e.g., MOHAMED EZZAT"}
+          - {label: "Hero Title", name: "hero_title", widget: "string", hint: "e.g., Business Development & E-Commerce Strategist"}
+          - {label: "Hero Description", name: "hero_description", widget: "string", hint: "A short sentence describing what you do."}
+          - {label: "About Me", name: "about_me", widget: "markdown", hint: "Write the main paragraph about yourself here."}
+          - label: "Skills"
             name: "skills"
             widget: "list"
             summary: "{{fields.name}}"
-            hint: "Add, edit, or remove skills from the skills grid."
-            fields:
-              - {label: "Skill Name", name: "name", widget: "string"}
+            field: {label: "Skill Name", name: "name", widget: "string"}

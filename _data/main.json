@@ -1,12 +1,8 @@
 {
-  "hero_section": {
-    "hero_name": "MOHAMED EZZAT",
-    "hero_title": "Business Development & E-Commerce Strategist",
-    "hero_description": "Crafting innovative business models and driving growth through data-driven strategies."
-  },
-  "about_section": {
-    "about_me": "I am a fourth-year E-Commerce student with a developed passion for business development, which has driven me to embark on a journey of learning and reading to become well-versed in all aspects of this field."
-  },
+  "hero_name": "MOHAMED EZZAT",
+  "hero_title": "Business Development & E-Commerce Strategist",
+  "hero_description": "Crafting innovative business models and driving growth through data-driven strategies.",
+  "about_me": "I am a fourth-year E-Commerce student with a developed passion for business development, which has driven me to embark on a journey of learning and reading to become well-versed in all aspects of this field.",
   "skills": [
     { "name": "Business Modeling & Strategy" },
     { "name": "Customer Analysis" },
