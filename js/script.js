@@ -45,12 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             // Populate Hero Section
-            document.getElementById('hero-name').textContent = data.hero_name;
-            document.getElementById('hero-title').textContent = data.hero_title;
-            document.getElementById('hero-description').textContent = data.hero_description;
+            document.getElementById('hero-name').textContent = data.hero_section.hero_name;
+            document.getElementById('hero-title').textContent = data.hero_section.hero_title;
+            document.getElementById('hero-description').textContent = data.hero_section.hero_description;
 
             // Populate About Me Section
-            document.getElementById('about-me').textContent = data.about_me;
+            document.getElementById('about-me').textContent = data.about_section.about_me;
 
             // Populate Skills Section
             const skillsGrid = document.getElementById('skills-grid');

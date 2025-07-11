@@ -6,19 +6,25 @@ media_folder: "assets/uploads" # Media files will be stored in the repo under as
 public_folder: "/assets/uploads" # The src attribute for uploaded media will begin with /assets/uploads
 
 collections:
-  - name: "pages"
-    label: "Pages"
+  - name: "site_content"
+    label: "محتوى الموقع"
     files:
       - file: "_data/main.json"
-        label: "Main Page"
-        name: "main"
+        label: "الصفحة الرئيسية"
+        name: "main_page"
         fields:
-          - {label: "Hero Name", name: "hero_name", widget: "string"}
-          - {label: "Hero Title", name: "hero_title", widget: "string"}
-          - {label: "Hero Description", name: "hero_description", widget: "string"}
-          - {label: "About Me", name: "about_me", widget: "markdown"}
-          - label: "Skills"
+          - {label: "قسم Hero", name: "hero_section", widget: "object", fields: [
+              {label: "الاسم", name: "hero_name", widget: "string", hint: "الاسم الذي يظهر في الأعلى، مثل MOHAMED EZZAT"},
+              {label: "العنوان الرئيسي", name: "hero_title", widget: "string", hint: "الوصف الوظيفي أو العنوان الرئيسي"},
+              {label: "الوصف الفرعي", name: "hero_description", widget: "string", hint: "جملة قصيرة تصف ما تفعله"}
+            ]}
+          - {label: "قسم About Me", name: "about_section", widget: "object", fields: [
+              {label: "فقرة 'عني'", name: "about_me", widget: "markdown", hint: "اكتب هنا الفقرة التعريفية عنك."}
+            ]}
+          - label: "المهارات (Skills)"
             name: "skills"
             widget: "list"
+            summary: "{{fields.name}}"
+            hint: "أضف أو عدّل المهارات التي تظهر في قسم المهارات"
             fields:
-              - {label: "Skill Name", name: "name", widget: "string"}
+              - {label: "اسم المهارة", name: "name", widget: "string"}
