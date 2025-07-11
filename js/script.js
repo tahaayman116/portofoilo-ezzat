@@ -40,6 +40,31 @@ staggerAnimation('.job ul li', 100);
 staggerAnimation('.certifications ul li', 100);
 staggerAnimation('.skill-item', 100);
 
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/_data/main.json')
+        .then(response => response.json())
+        .then(data => {
+            // Populate Hero Section
+            document.getElementById('hero-name').textContent = data.hero_name;
+            document.getElementById('hero-title').textContent = data.hero_title;
+            document.getElementById('hero-description').textContent = data.hero_description;
+
+            // Populate About Me Section
+            document.getElementById('about-me').textContent = data.about_me;
+
+            // Populate Skills Section
+            const skillsGrid = document.getElementById('skills-grid');
+            skillsGrid.innerHTML = ''; // Clear existing skills
+            data.skills.forEach(skill => {
+                const skillElement = document.createElement('div');
+                skillElement.className = 'skill-item magnetic-item';
+                skillElement.textContent = skill.name;
+                skillsGrid.appendChild(skillElement);
+            });
+        })
+        .catch(error => console.error('Error fetching dynamic content:', error));
+});
+
 // Super-Modern Magnetic Cursor Logic
 const navSlide = () => {
     const hamburger = document.querySelector('.hamburger');

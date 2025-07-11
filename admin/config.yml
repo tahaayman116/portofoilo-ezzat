@@ -1,0 +1,24 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update
+
+media_folder: "assets/uploads" # Media files will be stored in the repo under assets/uploads
+public_folder: "/assets/uploads" # The src attribute for uploaded media will begin with /assets/uploads
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "_data/main.json"
+        label: "Main Page"
+        name: "main"
+        fields:
+          - {label: "Hero Name", name: "hero_name", widget: "string"}
+          - {label: "Hero Title", name: "hero_title", widget: "string"}
+          - {label: "Hero Description", name: "hero_description", widget: "string"}
+          - {label: "About Me", name: "about_me", widget: "markdown"}
+          - label: "Skills"
+            name: "skills"
+            widget: "list"
+            fields:
+              - {label: "Skill Name", name: "name", widget: "string"}
