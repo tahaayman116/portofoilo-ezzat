@@ -326,7 +326,7 @@ section h2.is-visible::after {
     border-radius: 10px;
     text-align: center;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    color: #fff; /* Make text visible */
+    color: #fff !important; /* Force text visibility */
 }
 
 .skill-item:hover {
