@@ -1,150 +1,168 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // --- CORE UI & ANIMATION SETUP ---
-    const cursor = document.querySelector('.cursor');
-    const hamburger = document.querySelector('.hamburger');
+// Smooth scrolling for navigation links
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
 
-    document.addEventListener('mousemove', e => {
-        if (cursor) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Advanced Scroll-triggered Animations
+const animatedElements = document.querySelectorAll('section h2, .job ul li, .certifications ul li, .skill-item');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const element = entry.target;
+            const delay = element.dataset.delay || 0;
+            
+            setTimeout(() => {
+                element.classList.add('is-visible');
+            }, delay);
+
+            observer.unobserve(element); // Animate only once
         }
     });
+}, { threshold: 0.1 });
 
-    if (hamburger) {
-        hamburger.addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('nav-active');
-            hamburger.classList.toggle('toggle');
-        });
-    }
+// Stagger animations for lists and grids
+function staggerAnimation(selector, delay) {
+    document.querySelectorAll(selector).forEach((element, index) => {
+        element.dataset.delay = index * delay;
+        observer.observe(element);
+    });
+}
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const element = entry.target;
-                const delay = parseInt(element.dataset.delay) || 0;
-                setTimeout(() => element.classList.add('is-visible'), delay);
-                observer.unobserve(element);
-            }
-        });
-    }, { threshold: 0.1 });
+document.querySelectorAll('section h2').forEach(h2 => observer.observe(h2));
+staggerAnimation('.job ul li', 100);
+staggerAnimation('.certifications ul li', 100);
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/_data/main.json')
+        .then(response => response.json())
+        .then(data => {
+            // Populate Hero Section
+            document.getElementById('hero-name').textContent = data.hero_name;
+            document.getElementById('hero-title').textContent = data.hero_title;
+            document.getElementById('hero-description').textContent = data.hero_description;
 
-    function animate(selector, stagger = 0) {
-        document.querySelectorAll(selector).forEach((elem, i) => {
-            elem.dataset.delay = i * stagger;
-            observer.observe(elem);
-        });
-    }
+            // Populate About Me Section
+            document.getElementById('about-me').textContent = data.about_me;
 
-    function setupMagneticEffect() {
-        document.querySelectorAll('.magnetic-item').forEach(item => {
-            item.addEventListener('mousemove', (e) => {
-                const rect = item.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                item.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
-                if (cursor) cursor.style.transform = `scale(1.5)`;
-            });
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = 'translate(0,0)';
-                if (cursor) cursor.style.transform = `scale(1)`;
-            });
-        });
-    }
-
-    // --- DYNAMIC CONTENT LOADING ---
-    async function fetchJson(url) {
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                console.error(`Failed to fetch ${url}: ${response.statusText}`);
-                return null;
-            }
-            return await response.json();
-        } catch (error) {
-            console.error(`Error fetching ${url}:`, error);
-            return null;
-        }
-    }
-
-    async function loadContent() {
-        const [mainData, experienceData, certificationsData, skillsData] = await Promise.all([
-            fetchJson('/_data/main.json'),
-            fetchJson('/_data/experience.json'),
-            fetchJson('/_data/certifications.json'),
-            fetchJson('/_data/skills.json')
-        ]);
-
-        if (!mainData) {
-            document.body.innerHTML = '<h1 style="color: white; text-align: center; padding-top: 50px;">Error: Could not load main site content.</h1>';
-            return;
-        }
-
-        // 1. Populate Main Settings
-        document.title = mainData.title || 'Portfolio';
-        document.querySelector('.logo').textContent = mainData.logo_name;
-        document.getElementById('hero-name').textContent = mainData.hero_name;
-        document.getElementById('hero-title').textContent = mainData.hero_title;
-        document.getElementById('hero-description').textContent = mainData.hero_description;
-        document.querySelector('.cta-button.secondary').href = mainData.cv_filename;
-        document.getElementById('about-me').textContent = mainData.about_me;
-        document.getElementById('education-degree').textContent = mainData.education_degree;
-        document.getElementById('education-description').textContent = mainData.education_description;
-        document.getElementById('certifications-title').textContent = mainData.certifications_title;
-        document.querySelector('a[href^="mailto:"]').href = `mailto:${mainData.contact_email}`;
-        document.querySelector('a[href^="tel:"]').href = `tel:${mainData.contact_phone}`;
-        document.querySelector('a[href*="linkedin"]').href = mainData.linkedin_url;
-
-        // 2. Populate Experience
-        if (experienceData) {
-            const expList = document.getElementById('experience-list');
-            expList.innerHTML = '';
-            experienceData.forEach(job => {
-                const jobDiv = document.createElement('div');
-                jobDiv.className = 'job';
-                jobDiv.innerHTML = `
-                    <h3>${job.title}</h3>
-                     <p class="company">${job.company}</p>
-                    <p class="date">${job.date}</p>
-                    <ul>
-                        ${(job.responsibilities || []).map(item => `<li>${item}</li>`).join('')}
-                    </ul>
-                `;
-                expList.appendChild(jobDiv);
-            });
-        }
-
-        // 3. Populate Certifications
-        if (certificationsData) {
-            const certList = document.getElementById('certifications-list');
-            certList.innerHTML = '';
-            certificationsData.forEach(cert => {
-                const certItem = document.createElement('li');
-                certItem.innerHTML = `${cert.name} <span>(${cert.issuer})</span>`;
-                certList.appendChild(certItem);
-            });
-        }
-
-        // 4. Populate Skills
-        if (skillsData) {
+            // Populate Skills Section
             const skillsGrid = document.getElementById('skills-grid');
-            skillsGrid.innerHTML = '';
-            skillsData.forEach(skill => {
-                const skillDiv = document.createElement('div');
-                skillDiv.className = 'skill-item magnetic-item';
-                skillDiv.textContent = skill.name;
-                skillsGrid.appendChild(skillDiv);
+            skillsGrid.innerHTML = ''; // Clear existing skills
+            data.skills.forEach(skill => {
+                const skillElement = document.createElement('div');
+                skillElement.className = 'skill-item magnetic-item';
+                skillElement.textContent = skill.name;
+                skillsGrid.appendChild(skillElement);
             });
-        }
 
-        // 5. Trigger all animations and effects AFTER content is loaded
-        animate('section h2');
-        animate('.job', 100);
-        animate('#certifications-list li', 100);
-        animate('.skill-item', 50);
-        setupMagneticEffect();
-    }
+            // Re-apply animations AFTER skills are loaded
+            staggerAnimation('.skill-item', 100);
+        })
+        .catch(error => console.error('Error fetching dynamic content:', error));
+});
 
-    loadContent();
+// Super-Modern Magnetic Cursor Logic
+const navSlide = () => {
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav-links');
+    const navLinks = document.querySelectorAll('.nav-links li');
+
+    hamburger.addEventListener('click', () => {
+        // Toggle Nav
+        nav.classList.toggle('nav-active');
+
+        // Animate Links
+        navLinks.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = '';
+            } else {
+                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+            }
+        });
+        
+        // Hamburger Animation
+        hamburger.classList.toggle('toggle');
+    });
+}
+
+navSlide();
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Super-Modern Magnetic Cursor Logic
+    const cursor = document.querySelector('.cursor');
+    const magneticItems = document.querySelectorAll('.magnetic-item');
+    let mouseX = 0;
+    let mouseY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+    });
+
+    magneticItems.forEach(item => {
+        let isHovering = false;
+        const strength = 0.5; // How strong the pull is
+        item.addEventListener('mouseenter', () => {
+            isHovering = true;
+            cursor.classList.add('hover');
+        });
+        item.addEventListener('mouseleave', () => {
+            isHovering = false;
+            cursor.classList.remove('hover');
+            item.style.transform = 'translate(0, 0)';
+        });
+        const animate = () => {
+            if (isHovering) {
+                const rect = item.getBoundingClientRect();
+                const itemCenterX = rect.left + rect.width / 2;
+                const itemCenterY = rect.top + rect.height / 2;
+                const deltaX = (mouseX - itemCenterX) * strength;
+                const deltaY = (mouseY - itemCenterY) * strength;
+                item.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+            }
+            requestAnimationFrame(animate);
+        };
+        animate();
+    });
+
+    // Google Sheets Form Submission Logic
+    const form = document.querySelector('#contact form');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyqx4kn3km_-6-VHNb9fNq7yt1mXl8DdaQZQs4tZeRdvIZFl8fHizidIbd1_JhEmGG8/exec';
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Sending...';
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                if (response.ok) {
+                    submitButton.innerHTML = 'Message Sent! <span class="arrow">&check;</span>';
+                    form.reset();
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                submitButton.innerHTML = 'Error! <span class="arrow">&times;</span>';
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                }, 5000); // Revert button text after 5 seconds
+            });
+    });
 });
 
 // Add keyframes for the animation
