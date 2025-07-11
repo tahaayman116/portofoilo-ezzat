@@ -38,8 +38,6 @@ function staggerAnimation(selector, delay) {
 document.querySelectorAll('section h2').forEach(h2 => observer.observe(h2));
 staggerAnimation('.job ul li', 100);
 staggerAnimation('.certifications ul li', 100);
-staggerAnimation('.skill-item', 100);
-
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/_data/main.json')
         .then(response => response.json())
@@ -61,6 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 skillElement.textContent = skill.name;
                 skillsGrid.appendChild(skillElement);
             });
+
+            // Re-apply animations AFTER skills are loaded
+            staggerAnimation('.skill-item', 100);
         })
         .catch(error => console.error('Error fetching dynamic content:', error));
 });
