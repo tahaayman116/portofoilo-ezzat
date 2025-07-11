@@ -1,24 +1,59 @@
 backend:
   name: git-gateway
-  branch: main # Branch to update
+  branch: main
 
-media_folder: "assets/uploads" # Media files will be stored in the repo under assets/uploads
-public_folder: "/assets/uploads" # The src attribute for uploaded media will begin with /assets/uploads
+media_folder: "assets/images"
+public_folder: "/assets/images"
 
 collections:
-  - name: "pages"
-    label: "Page Content"
+  - name: "settings"
+    label: "Site Settings"
     files:
-      - file: "_data/main.json"
-        label: "Home Page"
-        name: "home"
+      - label: "Main Content"
+        name: "main"
+        file: "_data/main.json"
         fields:
-          - {label: "Hero Name", name: "hero_name", widget: "string", hint: "e.g., MOHAMED EZZAT"}
-          - {label: "Hero Title", name: "hero_title", widget: "string", hint: "e.g., Business Development & E-Commerce Strategist"}
-          - {label: "Hero Description", name: "hero_description", widget: "string", hint: "A short sentence describing what you do."}
-          - {label: "About Me", name: "about_me", widget: "markdown", hint: "Write the main paragraph about yourself here."}
-          - label: "Skills"
-            name: "skills"
-            widget: "list"
-            summary: "{{fields.name}}"
-            field: {label: "Skill Name", name: "name", widget: "string"}
+          - {label: "Page Title", name: "title", widget: "string", hint: "The title that appears in the browser tab."}
+          - {label: "Your Name (Logo)", name: "logo_name", widget: "string", hint: "The name displayed in the navigation bar."}
+          - {label: "Hero Name", name: "hero_name", widget: "string", hint: "Your full name, displayed at the top of the hero section."}
+          - {label: "Hero Title", name: "hero_title", widget: "string", hint: "Your professional title or headline."}
+          - {label: "Hero Description", name: "hero_description", widget: "text", hint: "A brief, engaging summary of your value proposition."}
+          - {label: "CV Filename", name: "cv_filename", widget: "string", hint: "The exact filename of your CV PDF in the root directory (e.g., my_cv.pdf)"}
+          - {label: "About Me", name: "about_me", widget: "text", hint: "A short paragraph about yourself."}
+          - {label: "Education Degree", name: "education_degree", widget: "string", hint: "Your main degree or academic title."}
+          - {label: "Education Description", name: "education_description", widget: "text", hint: "A description of your primary education."}
+          - {label: "Certifications Section Title", name: "certifications_title", widget: "string", hint: "The title for the certifications list (e.g., 'Certificates and Courses')."}
+          - {label: "Contact Email", name: "contact_email", widget: "string"}
+          - {label: "Contact Phone", name: "contact_phone", widget: "string"}
+          - {label: "LinkedIn URL", name: "linkedin_url", widget: "string"}
+
+  - name: "experience"
+    label: "Work Experience"
+    label_singular: "Job"
+    folder: "_data/experience"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Job Title", name: "title", widget: "string"}
+      - {label: "Company / Context", name: "company", widget: "string"}
+      - {label: "Date Range", name: "date", widget: "string", hint: "e.g., 2023 - Present"}
+      - {label: "Responsibilities", name: "responsibilities", widget: "list", field: {label: "Responsibility", name: "item", widget: "string"}}
+
+  - name: "certifications"
+    label: "Certifications"
+    label_singular: "Certificate"
+    folder: "_data/certifications"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Certificate Name", name: "name", widget: "string"}
+      - {label: "Issuing Body", name: "issuer", widget: "string", hint: "e.g., Google, University of Virginia"}
+
+  - name: "skills"
+    label: "Skills & Expertise"
+    label_singular: "Skill"
+    folder: "_data/skills"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Skill Name", name: "name", widget: "string"}
