@@ -105,22 +105,25 @@ document.addEventListener('DOMContentLoaded', () => {
         // Contact Section
         document.getElementById('contact-title').textContent = pageData.contact.title;
 
-        // Footer
-        document.getElementById('copyright-text').textContent = footerData.copyright;
-        const socialLinksContainer = document.getElementById('social-links-container');
-        socialLinksContainer.innerHTML = '';
-        footerData.social_links.forEach(link => {
-            const linkElement = document.createElement('a');
-            linkElement.href = link.url;
-            linkElement.setAttribute('aria-label', link.label);
-            linkElement.className = 'magnetic-item';
-            if (link.url.startsWith('http')) {
-                linkElement.target = '_blank';
-                linkElement.rel = 'noopener';
-            }
-            linkElement.innerHTML = `<i class="${link.icon}"></i>`;
-            socialLinksContainer.appendChild(linkElement);
-        });
+        // Populate Footer from Settings
+        const footerData = settingsData.footer;
+        if (footerData) {
+            document.getElementById('copyright-text').textContent = footerData.copyright;
+            const socialLinksContainer = document.getElementById('social-links-container');
+            socialLinksContainer.innerHTML = ''; // Clear existing links
+            footerData.social_links.forEach(link => {
+                const linkElement = document.createElement('a');
+                linkElement.href = link.url;
+                linkElement.setAttribute('aria-label', link.label);
+                linkElement.className = 'magnetic-item';
+                if (link.url.startsWith('http')) {
+                    linkElement.target = '_blank';
+                    linkElement.rel = 'noopener';
+                }
+                linkElement.innerHTML = `<i class="${link.icon}"></i>`;
+                socialLinksContainer.appendChild(linkElement);
+            });
+        }
 
         // Re-initialize animations and effects for all new dynamic content
         document.querySelectorAll('section h2').forEach(h2 => observer.observe(h2));
