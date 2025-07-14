@@ -1,20 +1,90 @@
 {
-  "hero_name": "MOHAMED EZZAT",
-  "hero_title": "Business Development & E-Commerce Strategist",
-  "hero_description": "Crafting innovative business models and driving growth through data-driven strategies.",
-  "about_me": "I am a fourth-year E-Commerce student with a developed passion for business development, which has driven me to embark on a journey of learning and reading to become well-versed in all aspects of this field.",
-  "skills": [
-    { "name": "Business Modeling & Strategy" },
-    { "name": "Customer Analysis" },
-    { "name": "Resource Management" },
-    { "name": "Risk Analysis" },
-    { "name": "Communication" },
-    { "name": "Negotiation" },
-    { "name": "Leadership" },
-    { "name": "Teamwork" },
-    { "name": "Problem-Solving" },
-    { "name": "Adaptability" },
-    { "name": "Time Management" },
-    { "name": "Creativity" }
-  ]
+  "general": {
+    "site_title": "Mohamed Ezzat | Business Development",
+    "cv_url": "/assets/documents/Mohamed ezzat cv.pdf"
+  },
+  "hero": {
+    "name": "MOHAMED EZZAT",
+    "title": "Business Development & E-Commerce Strategist",
+    "description": "Crafting innovative business models and driving growth through data-driven strategies."
+  },
+  "about": {
+    "title": "About Me",
+    "content": "I am a fourth-year E-Commerce student with a developed passion for business development, which has driven me to embark on a journey of learning and reading to become well-versed in all aspects of this field."
+  },
+  "experience": {
+    "title": "Work Experience",
+    "jobs": [
+      {
+        "title": "Business Consultant for startup companies",
+        "date": "2023 - Present",
+        "responsibilities": [
+          "Detailed study of the current status of the establishment to identify strengths and weaknesses.",
+          "Designing a Business Model for Startups: Detailed Departmental Roles.",
+          "Develop customer acquisition and retention strategies.",
+          "Manage employee performance and development.",
+          "Analyze the profitability of different revenue models.",
+          "Build and maintain the brand identity and messaging.",
+          "How to do digital marketing on social media platforms and reach the right audience to promote a product and increase sales."
+        ]
+      },
+      {
+        "title": "Social Media Accounts Developer (own business)",
+        "date": "2021 - 2023",
+        "responsibilities": [
+          "Developing social media accounts from scratch to become a source of income.",
+          "Creating engaging content and managing accounts to build a strong online presence.",
+          "Increasing viewership and reaching the target audience by understanding algorithms and content suitable for the specific demographic."
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills & Expertise",
+    "skill_list": [
+      { "name": "Business Modeling & Strategy" },
+      { "name": "Customer Analysis" },
+      { "name": "Resource Management" },
+      { "name": "Cost Management" },
+      { "name": "Data Visualization (Power BI, Orange)" },
+      { "name": "Microsoft Office Suite" },
+      { "name": "Video Editing (CapCut, InShot)" }
+    ]
+  },
+  "education": {
+    "title": "Education & Certifications",
+    "institution": "Student at The Higher Institute of E-Commerce Systems",
+    "description": "This specialization combines accounting with electronic software that assists in business systems, specifically accounting and administrative programs that keep pace with current technological advancements in the world.",
+    "cert_title": "Certificates and Courses",
+    "certificates": [
+      { "name": "Diploma of Administration Manager / In Administration Management by MTF Institute" },
+      { "name": "MTF Institute Executive Diploma in Business Strategy, Business Module, Strategic Management" },
+      { "name": "Creative Thinking: Techniques and Tools for Success (Imperial College London)" },
+      { "name": "Digital Product Management: Modern Fundamentals (University of Virginia)" },
+      { "name": "Business Model Canvas: A Tool for Entrepreneurs and Innovators (Kennesaw State University)" }
+    ]
+  },
+  "contact": {
+    "title": "Get In Touch"
+  },
+  "footer": {
+    "copyright": "© 2025 Mohamed Ezzat. All Rights Reserved.",
+    "social_links": [
+      {
+        "icon": "fab fa-linkedin-in",
+        "url": "https://www.linkedin.com/in/mohamad-ezzat-16754b28a/",
+        "label": "LinkedIn"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "url": "mailto:ezzatm768@gmail.com",
+        "label": "Email"
+      },
+      {
+        "icon": "fas fa-phone",
+        "url": "tel:+201507623769",
+        "label": "Phone"
+      }
+    ]
+  }
 }
