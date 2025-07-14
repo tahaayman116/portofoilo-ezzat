@@ -1,68 +1,24 @@
 backend:
   name: git-gateway
-  branch: main # Or the branch you are working on
+  branch: main # Branch to update
 
-media_folder: "assets/img"
-public_folder: "/assets/img"
+media_folder: "assets/uploads" # Media files will be stored in the repo under assets/uploads
+public_folder: "/assets/uploads" # The src attribute for uploaded media will begin with /assets/uploads
 
 collections:
   - name: "pages"
-    label: "Pages"
-    folder: "_data/pages"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Hero Section", name: "hero", widget: "object", fields: [
-          { label: "Name", name: "name", widget: "string", default: "Ezzat Al-Sayed" },
-          { label: "Title", name: "title", widget: "string", default: "Frontend Developer" },
-          { label: "Description", name: "description", widget: "markdown" }
-        ]}
-      - { label: "About Section", name: "about", widget: "object", fields: [
-          { label: "Title", name: "title", widget: "string", default: "About Me" },
-          { label: "Content", name: "content", widget: "markdown" }
-        ]}
-      - { label: "Work Experience", name: "experience", widget: "object", fields: [
-          { label: "Title", name: "title", widget: "string", default: "Work Experience" },
-          { label: "Jobs", name: "jobs", widget: "list", fields: [
-              { label: "Job Title", name: "title", widget: "string" },
-              { label: "Date Range", name: "date", widget: "string" },
-              { label: "Responsibilities", name: "responsibilities", widget: "list", field: { label: "Responsibility", widget: "string"} }
-          ]}
-        ]}
-      - { label: "Skills & Expertise", name: "skills", widget: "object", fields: [
-          { label: "Title", name: "title", widget: "string", default: "Skills & Expertise" },
-          { label: "Skill List", name: "skill_list", widget: "list", field: { label: "Skill", widget: "string"} }
-        ]}
-      - { label: "Education & Certifications", name: "education", widget: "object", fields: [
-          { label: "Title", name: "title", widget: "string", default: "Education & Certifications" },
-          { label: "Institution Name", name: "institution", widget: "string" },
-          { label: "Description", name: "description", widget: "markdown" },
-          { label: "Certifications Title", name: "cert_title", widget: "string" },
-          { label: "Certificates", name: "certificates", widget: "list", field: { label: "Certificate", widget: "string"} }
-        ]}
-      - { label: "Contact Section", name: "contact", widget: "object", fields: [
-          { label: "Title", name: "title", widget: "string", default: "Get In Touch" }
-        ]}
-
-  - name: settings
-    label: Site Settings
+    label: "Page Content"
     files:
-      - label: General Settings
-        name: settings
-        file: _data/settings.json
+      - file: "_data/main.json"
+        label: "Home Page"
+        name: "home"
         fields:
-          - { label: "Site Title", name: "site_title", widget: "string" }
-          - { label: "CV File URL", name: "cv_url", widget: "string" }
-          - label: "Footer"
-            name: "footer"
-            widget: "object"
-            fields:
-              - { label: "Copyright Text", name: "copyright", widget: "string" }
-              - label: "Social Links"
-                name: "social_links"
-                widget: "list"
-                fields:
-                  - { label: "Aria Label", name: "label", widget: "string" }
-                  - { label: "URL", name: "url", widget: "string" }
-                  - { label: "Font Awesome Icon", name: "icon", widget: "string" }
+          - {label: "Hero Name", name: "hero_name", widget: "string", hint: "e.g., MOHAMED EZZAT"}
+          - {label: "Hero Title", name: "hero_title", widget: "string", hint: "e.g., Business Development & E-Commerce Strategist"}
+          - {label: "Hero Description", name: "hero_description", widget: "string", hint: "A short sentence describing what you do."}
+          - {label: "About Me", name: "about_me", widget: "markdown", hint: "Write the main paragraph about yourself here."}
+          - label: "Skills"
+            name: "skills"
+            widget: "list"
+            summary: "{{fields.name}}"
+            field: {label: "Skill Name", name: "name", widget: "string"}
