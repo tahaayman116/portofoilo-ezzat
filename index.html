@@ -30,84 +30,55 @@
         </header>
 
         <main>
+            <!-- Hero Section -->
             <section id="hero" class="glass-panel">
                 <div class="hero-background"></div>
                 <div class="hero-content">
-                    <h2 id="hero-name" class="name-heading">MOHAMED EZZAT</h2>
-                    <h1 id="hero-title" class="main-heading">Business Development & E-Commerce Strategist</h1>
-                    <p id="hero-description" class="subtitle">Crafting innovative business models and driving growth through data-driven strategies.</p>
-                                        <div class="hero-buttons">
+                    <h2 id="hero-name" class="name-heading"></h2>
+                    <h1 id="hero-title" class="main-heading"></h1>
+                    <p id="hero-description" class="subtitle"></p>
+                    <div class="hero-buttons">
                         <a href="#contact" class="cta-button magnetic-item">Get In Touch <span class="arrow">&rarr;</span></a>
-                        <a href="Mohamed ezzat cv.pdf" class="cta-button secondary magnetic-item" download>Download CV <span class="arrow">&darr;</span></a>
+                        <a id="cv-download-link" href="" class="cta-button secondary magnetic-item" download>Download CV <span class="arrow">&darr;</span></a>
                     </div>
                 </div>
             </section>
 
+            <!-- About Section -->
             <section id="about" class="glass-panel">
-                <h2>About Me</h2>
-                <p id="about-me">I am a fourth-year E-Commerce student with a developed passion for business development, which has driven me to embark on a journey of learning and reading to become well-versed in all aspects of this field.</p>
+                <h2 id="about-title"></h2>
+                <p id="about-content"></p>
             </section>
 
+            <!-- Experience Section -->
             <section id="experience" class="glass-panel">
-                <h2>Work Experience</h2>
-                <div class="job">
-                    <h3>Business Consultant for startup companies</h3>
-                    <p class="date">2023 - Present</p>
-                    <ul>
-                        <li>Detailed study of the current status of the establishment to identify strengths and weaknesses.</li>
-                        <li>Designing a Business Model for Startups: Detailed Departmental Roles.</li>
-                        <li>Develop customer acquisition and retention strategies.</li>
-                        <li>Manage employee performance and development.</li>
-                        <li>Analyze the profitability of different revenue models.</li>
-                        <li>Build and maintain the brand identity and messaging.</li>
-                        <li>How to do digital marketing on social media platforms and reach the right audience to promote a product and increase sales.</li>
-                    </ul>
-                </div>
-                <div class="job">
-                    <h3>Social Media Accounts Developer (own business)</h3>
-                    <p class="date">2021 - 2023</p>
-                    <ul>
-                        <li>In this work, there was a Japanese voice-over with motivational texts and phrases about life. The goal was to reach the largest number of people interested in this field.</li>
-                        <li>How to utilize available resources to achieve maximum effectiveness.</li>
-                        <li>Increasing viewership and reaching the target audience by understanding algorithms and content suitable for the specific demographic.</li>
-                    </ul>
-                </div>
+                <h2 id="experience-title"></h2>
+                <div id="jobs-container"></div>
             </section>
 
+            <!-- Skills Section -->
             <section id="skills" class="glass-panel">
-                <h2>Skills &amp; Expertise</h2>
-                <div class="skills-grid" id="skills-grid">
-                    <div class="skill-item magnetic-item">Business Modeling &amp; Strategy</div>
-                    <div class="skill-item magnetic-item">Customer Analysis</div>
-                    <div class="skill-item magnetic-item">Resource Management</div>
-                    <div class="skill-item magnetic-item">Cost Management</div>
-                    <div class="skill-item magnetic-item">Data Visualization (Power BI, Orange)</div>
-                    <div class="skill-item magnetic-item">Microsoft Office Suite</div>
-                    <div class="skill-item magnetic-item">Video Editing (CapCut, InShot)</div>
-                </div>
+                <h2 id="skills-title"></h2>
+                <div class="skills-grid" id="skills-grid"></div>
             </section>
             
+            <!-- Education Section -->
             <section id="education" class="glass-panel">
-                <h2>Education & Certifications</h2>
+                <h2 id="education-title"></h2>
                 <div class="education-item">
-                    <h3>Student at The Higher Institute of E-Commerce Systems</h3>
-                    <p>This specialization combines accounting with electronic software that assists in business systems, specifically accounting and administrative programs that keep pace with current technological advancements in the world.</p>
+                    <h3 id="education-institution"></h3>
+                    <p id="education-description"></p>
                 </div>
                 <div class="certifications">
-                    <h3>Certificates and Courses</h3>
-                    <ul>
-                        <li>Diploma of Administration Manager / In Administration Management by MTF Institute</li>
-                        <li>MTF Institute Executive Diploma in Business Strategy, Business Module, Strategic Management</li>
-                        <li>Creative Thinking: Techniques and Tools for Success (Imperial College London)</li>
-                        <li>Digital Product Management: Modern Fundamentals (University of Virginia)</li>
-                        <li>Business Model Canvas: A Tool for Entrepreneurs and Innovators (Kennesaw State University)</li>
-                    </ul>
+                    <h3 id="cert-title"></h3>
+                    <ul id="cert-list"></ul>
                 </div>
             </section>
 
+            <!-- Contact Section -->
             <section id="contact" class="glass-panel">
-                <h2>Get In Touch</h2>
-                <form action="#" method="POST">
+                <h2 id="contact-title"></h2>
+                <form id="contact-form" action="#" method="POST">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
@@ -122,13 +93,9 @@
             </section>
         </main>
 
-                <footer>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/mohamad-ezzat-16754b28a/" target="_blank" rel="noopener" aria-label="LinkedIn" class="magnetic-item"><i class="fab fa-linkedin-in"></i></a>
-                <a href="mailto:ezzatm768@gmail.com" aria-label="Email" class="magnetic-item"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+201507623769" aria-label="Phone" class="magnetic-item"><i class="fas fa-phone"></i></a>
-            </div>
-            <p>&copy; 2025 Mohamed Ezzat. All Rights Reserved.</p>
+        <footer>
+            <div class="social-links" id="social-links-container"></div>
+            <p id="copyright-text"></p>
         </footer>
     </div>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
