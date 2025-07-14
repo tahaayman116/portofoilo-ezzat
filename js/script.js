@@ -39,99 +39,99 @@ document.querySelectorAll('section h2').forEach(h2 => observer.observe(h2));
 staggerAnimation('.job ul li', 100);
 staggerAnimation('.certifications ul li', 100);
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/_data/main.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // General
-            document.title = data.general.site_title;
-            document.getElementById('cv-download-link').href = data.general.cv_url;
+    const fetchJSON = (url) => fetch(url).then(res => {
+        if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.statusText}`);
+        return res.json();
+    });
 
-            // Hero Section
-            document.getElementById('hero-name').textContent = data.hero.name;
-            document.getElementById('hero-title').textContent = data.hero.title;
-            document.getElementById('hero-description').textContent = data.hero.description;
+    Promise.all([
+        fetchJSON('/_data/pages/main.json'),
+        fetchJSON('/_data/settings.json'),
+        fetchJSON('/_data/footer.json')
+    ]).then(([pageData, settingsData, footerData]) => {
+        // General Settings
+        document.title = settingsData.site_title;
+        document.getElementById('cv-download-link').href = settingsData.cv_url;
 
-            // About Section
-            document.getElementById('about-title').textContent = data.about.title;
-            document.getElementById('about-content').textContent = data.about.content;
+        // Hero Section
+        document.getElementById('hero-name').textContent = pageData.hero.name;
+        document.getElementById('hero-title').textContent = pageData.hero.title;
+        document.getElementById('hero-description').textContent = pageData.hero.description;
 
-            // Experience Section
-            document.getElementById('experience-title').textContent = data.experience.title;
-            const jobsContainer = document.getElementById('jobs-container');
-            jobsContainer.innerHTML = '';
-            data.experience.jobs.forEach(job => {
-                const jobElement = document.createElement('div');
-                jobElement.className = 'job';
-                let responsibilitiesHTML = job.responsibilities.map(item => `<li>${item}</li>`).join('');
-                jobElement.innerHTML = `
-                    <h3>${job.title}</h3>
-                    <p class="date">${job.date}</p>
-                    <ul>${responsibilitiesHTML}</ul>
-                `;
-                jobsContainer.appendChild(jobElement);
-            });
+        // About Section
+        document.getElementById('about-title').textContent = pageData.about.title;
+        document.getElementById('about-content').textContent = pageData.about.content;
 
-            // Skills Section
-            document.getElementById('skills-title').textContent = data.skills.title;
-            const skillsGrid = document.getElementById('skills-grid');
-            skillsGrid.innerHTML = '';
-            data.skills.skill_list.forEach(skill => {
-                const skillElement = document.createElement('div');
-                skillElement.className = 'skill-item magnetic-item';
-                skillElement.textContent = skill.name;
-                skillsGrid.appendChild(skillElement);
-            });
-
-            // Education Section
-            document.getElementById('education-title').textContent = data.education.title;
-            document.getElementById('education-institution').textContent = data.education.institution;
-            document.getElementById('education-description').textContent = data.education.description;
-            document.getElementById('cert-title').textContent = data.education.cert_title;
-            const certList = document.getElementById('cert-list');
-            certList.innerHTML = '';
-            data.education.certificates.forEach(cert => {
-                const certElement = document.createElement('li');
-                certElement.textContent = cert.name;
-                certList.appendChild(certElement);
-            });
-
-            // Contact Section
-            document.getElementById('contact-title').textContent = data.contact.title;
-
-            // Footer
-            document.getElementById('copyright-text').textContent = data.footer.copyright;
-            const socialLinksContainer = document.getElementById('social-links-container');
-            socialLinksContainer.innerHTML = '';
-            data.footer.social_links.forEach(link => {
-                const linkElement = document.createElement('a');
-                linkElement.href = link.url;
-                linkElement.setAttribute('aria-label', link.label);
-                linkElement.className = 'magnetic-item';
-                if (link.url.startsWith('http')) {
-                    linkElement.target = '_blank';
-                    linkElement.rel = 'noopener';
-                }
-                linkElement.innerHTML = `<i class="${link.icon}"></i>`;
-                socialLinksContainer.appendChild(linkElement);
-            });
-
-            // Re-initialize animations and effects for all new dynamic content
-            document.querySelectorAll('section h2').forEach(h2 => observer.observe(h2));
-            staggerAnimation('.job ul li', 100);
-            staggerAnimation('.certifications ul li', 100);
-            staggerAnimation('.skill-item', 100);
-            // Re-initialize magnetic effect for new items if your library requires it
-            // initMagneticEffect(); // Example function call
-        })
-        .catch(error => {
-            console.error('Fatal Error: Could not fetch or process site content.', error);
-            document.body.innerHTML = '<div style="text-align: center; padding: 50px; font-family: sans-serif; color: white;"><h1>Error</h1><p>Could not load website content. Please check the console for details.</p></div>';
+        // Experience Section
+        document.getElementById('experience-title').textContent = pageData.experience.title;
+        const jobsContainer = document.getElementById('jobs-container');
+        jobsContainer.innerHTML = '';
+        pageData.experience.jobs.forEach(job => {
+            const jobElement = document.createElement('div');
+            jobElement.className = 'job';
+            let responsibilitiesHTML = job.responsibilities.map(item => `<li>${item}</li>`).join('');
+            jobElement.innerHTML = `
+                <h3>${job.title}</h3>
+                <p class="date">${job.date}</p>
+                <ul>${responsibilitiesHTML}</ul>
+            `;
+            jobsContainer.appendChild(jobElement);
         });
+
+        // Skills Section
+        document.getElementById('skills-title').textContent = pageData.skills.title;
+        const skillsGrid = document.getElementById('skills-grid');
+        skillsGrid.innerHTML = '';
+        pageData.skills.skill_list.forEach(skill => {
+            const skillElement = document.createElement('div');
+            skillElement.className = 'skill-item magnetic-item';
+            skillElement.textContent = skill;
+            skillsGrid.appendChild(skillElement);
+        });
+
+        // Education Section
+        document.getElementById('education-title').textContent = pageData.education.title;
+        document.getElementById('education-institution').textContent = pageData.education.institution;
+        document.getElementById('education-description').textContent = pageData.education.description;
+        document.getElementById('cert-title').textContent = pageData.education.cert_title;
+        const certList = document.getElementById('cert-list');
+        certList.innerHTML = '';
+        pageData.education.certificates.forEach(cert => {
+            const certElement = document.createElement('li');
+            certElement.textContent = cert;
+            certList.appendChild(certElement);
+        });
+
+        // Contact Section
+        document.getElementById('contact-title').textContent = pageData.contact.title;
+
+        // Footer
+        document.getElementById('copyright-text').textContent = footerData.copyright;
+        const socialLinksContainer = document.getElementById('social-links-container');
+        socialLinksContainer.innerHTML = '';
+        footerData.social_links.forEach(link => {
+            const linkElement = document.createElement('a');
+            linkElement.href = link.url;
+            linkElement.setAttribute('aria-label', link.label);
+            linkElement.className = 'magnetic-item';
+            if (link.url.startsWith('http')) {
+                linkElement.target = '_blank';
+                linkElement.rel = 'noopener';
+            }
+            linkElement.innerHTML = `<i class="${link.icon}"></i>`;
+            socialLinksContainer.appendChild(linkElement);
+        });
+
+        // Re-initialize animations and effects for all new dynamic content
+        document.querySelectorAll('section h2').forEach(h2 => observer.observe(h2));
+        staggerAnimation('.job ul li', 100);
+        staggerAnimation('.certifications ul li', 100);
+        staggerAnimation('.skill-item', 100);
+
+    }).catch(error => {
+        console.error('Fatal Error: Could not fetch or process site content.', error);
+        document.body.innerHTML = '<div style="text-align: center; padding: 50px; font-family: sans-serif; color: white;"><h1>Error</h1><p>Could not load website content. Please check the console for details.</p></div>';
+    });
 });
 
 // Super-Modern Magnetic Cursor Logic

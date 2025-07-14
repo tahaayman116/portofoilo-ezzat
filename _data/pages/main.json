@@ -1,0 +1,53 @@
+{
+  "title": "Homepage",
+  "hero": {
+    "name": "Ezzat Al-Sayed",
+    "title": "Frontend Developer",
+    "description": "I design and code beautifully simple things, and I love what I do. I specialize in creating modern, responsive websites with a focus on user experience and clean code."
+  },
+  "about": {
+    "title": "About Me",
+    "content": "I am a passionate frontend developer with a knack for creating elegant and effective user interfaces. With a strong foundation in HTML, CSS, and JavaScript, I bring ideas to life in the browser. I am constantly learning and adapting to new technologies to deliver the best possible web experiences."
+  },
+  "experience": {
+    "title": "Work Experience",
+    "jobs": [
+      {
+        "title": "Frontend Developer - Freelance",
+        "date": "2022 - Present",
+        "responsibilities": [
+          "Developed and maintained responsive websites for various clients.",
+          "Collaborated with designers to create seamless user experiences.",
+          "Implemented modern frontend frameworks and libraries."
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills & Expertise",
+    "skill_list": [
+      "HTML5",
+      "CSS3 & Sass",
+      "JavaScript (ES6+)",
+      "React",
+      "Vue.js",
+      "Git & GitHub",
+      "Responsive Design",
+      "UI/UX Principles"
+    ]
+  },
+  "education": {
+    "title": "Education & Certifications",
+    "institution": "The Higher Institute of E-Commerce and Information Systems",
+    "description": "Bachelor's degree in Management Information Systems (MIS).",
+    "cert_title": "Certificates and Courses",
+    "certificates": [
+      "Advanced CSS and Sass",
+      "JavaScript Algorithms and Data Structures",
+      "Responsive Web Design"
+    ]
+  },
+  "contact": {
+    "title": "Get In Touch"
+  }
+}
