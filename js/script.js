@@ -46,9 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     Promise.all([
         fetchJSON('/_data/pages/main.json'),
-        fetchJSON('/_data/settings.json'),
-        fetchJSON('/_data/footer.json')
-    ]).then(([pageData, settingsData, footerData]) => {
+        fetchJSON('/_data/settings.json')
+    ]).then(([pageData, settingsData]) => {
         // General Settings
         document.title = settingsData.site_title;
         document.getElementById('cv-download-link').href = settingsData.cv_url;
@@ -108,20 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Populate Footer from Settings
         const footerData = settingsData.footer;
         if (footerData) {
-            document.getElementById('copyright-text').textContent = footerData.copyright;
-            const socialLinksContainer = document.getElementById('social-links-container');
-            socialLinksContainer.innerHTML = ''; // Clear existing links
+            document.getElementById('copyright').textContent = footerData.copyright;
+            const socialLinksList = document.getElementById('social-links');
+            socialLinksList.innerHTML = ''; // Clear existing links
             footerData.social_links.forEach(link => {
-                const linkElement = document.createElement('a');
-                linkElement.href = link.url;
-                linkElement.setAttribute('aria-label', link.label);
-                linkElement.className = 'magnetic-item';
-                if (link.url.startsWith('http')) {
-                    linkElement.target = '_blank';
-                    linkElement.rel = 'noopener';
-                }
-                linkElement.innerHTML = `<i class="${link.icon}"></i>`;
-                socialLinksContainer.appendChild(linkElement);
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<a href="${link.url}" aria-label="${link.label}" target="_blank" rel="noopener"><i class="${link.icon}"></i></a>`;
+                socialLinksList.appendChild(listItem);
             });
         }
 
