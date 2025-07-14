@@ -3,18 +3,56 @@
   "hero_title": "Business Development & E-Commerce Strategist",
   "hero_description": "Crafting innovative business models and driving growth through data-driven strategies.",
   "about_me": "I am a fourth-year E-Commerce student with a developed passion for business development, which has driven me to embark on a journey of learning and reading to become well-versed in all aspects of this field.",
+  "experience": [
+    {
+      "title": "dasdsad",
+      "company": "dsadadaffff",
+      "duration": "sgsgfsgttttt",
+      "description": "bdfgsdgfsdgsdgscxfvvfvdf"
+    }
+  ],
+  "contact": {
+    "email": "dddsfdsfds@gmail.com",
+    "phone": "+201124875569",
+    "linkedin": "https://www.linkedin.com/in/taha-ayman-48216319a/",
+    "cv": "/assets/uploads/mohamed-ezzat.pdf"
+  },
   "skills": [
-    { "name": "Business Modeling & Strategy" },
-    { "name": "Customer Analysis" },
-    { "name": "Resource Management" },
-    { "name": "Risk Analysis" },
-    { "name": "Communication" },
-    { "name": "Negotiation" },
-    { "name": "Leadership" },
-    { "name": "Teamwork" },
-    { "name": "Problem-Solving" },
-    { "name": "Adaptability" },
-    { "name": "Time Management" },
-    { "name": "Creativity" }
+    {
+      "name": "Business Modeling & Strategy"
+    },
+    {
+      "name": "Customer Analysis"
+    },
+    {
+      "name": "Resource Management"
+    },
+    {
+      "name": "Risk Analysis"
+    },
+    {
+      "name": "Communication"
+    },
+    {
+      "name": "Negotiation"
+    },
+    {
+      "name": "Leadership"
+    },
+    {
+      "name": "Teamwork"
+    },
+    {
+      "name": "Problem-Solving"
+    },
+    {
+      "name": "Adaptability"
+    },
+    {
+      "name": "Time Management"
+    },
+    {
+      "name": "Creativity"
+    }
   ]
 }
