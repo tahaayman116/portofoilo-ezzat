@@ -27,19 +27,19 @@ collections:
           { label: "Jobs", name: "jobs", widget: "list", fields: [
               { label: "Job Title", name: "title", widget: "string" },
               { label: "Date Range", name: "date", widget: "string" },
-              { label: "Responsibilities", name: "responsibilities", widget: "list", field: { label: "Responsibility", name: "item", widget: "string"} }
+              { label: "Responsibilities", name: "responsibilities", widget: "list", field: { label: "Responsibility", widget: "string"} }
           ]}
         ]}
       - { label: "Skills & Expertise", name: "skills", widget: "object", fields: [
           { label: "Title", name: "title", widget: "string", default: "Skills & Expertise" },
-          { label: "Skill List", name: "skill_list", widget: "list", field: { label: "Skill", name: "name", widget: "string"} }
+          { label: "Skill List", name: "skill_list", widget: "list", field: { label: "Skill", widget: "string"} }
         ]}
       - { label: "Education & Certifications", name: "education", widget: "object", fields: [
           { label: "Title", name: "title", widget: "string", default: "Education & Certifications" },
           { label: "Institution Name", name: "institution", widget: "string" },
           { label: "Description", name: "description", widget: "markdown" },
           { label: "Certifications Title", name: "cert_title", widget: "string" },
-          { label: "Certificates", name: "certificates", widget: "list", field: { label: "Certificate", name: "name", widget: "string"} }
+          { label: "Certificates", name: "certificates", widget: "list", field: { label: "Certificate", widget: "string"} }
         ]}
       - { label: "Contact Section", name: "contact", widget: "object", fields: [
           { label: "Title", name: "title", widget: "string", default: "Get In Touch" }
