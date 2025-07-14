@@ -47,51 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('hero-title').textContent = data.hero_title;
             document.getElementById('hero-description').textContent = data.hero_description;
 
-            // Update CV download link
-            if (data.contact && data.contact.cv) {
-                document.getElementById('cv-download-link').href = data.contact.cv;
-            }
-
-            // Update Contact Info
-            if (data.contact) {
-                document.getElementById('contact-email').href = `mailto:${data.contact.email}`;
-                document.getElementById('contact-phone').href = `tel:${data.contact.phone}`;
-                document.getElementById('contact-linkedin').href = data.contact.linkedin;
-            }
-
             // Populate About Me Section
             document.getElementById('about-me').textContent = data.about_me;
-
-            // Populate Work Experience Section
-            const experienceList = document.getElementById('experience-list');
-            experienceList.innerHTML = ''; // Clear existing entries
-            data.experience.forEach(job => {
-                const jobElement = document.createElement('div');
-                jobElement.className = 'job';
-
-                const titleElement = document.createElement('h3');
-                titleElement.textContent = job.title;
-
-                const durationElement = document.createElement('p');
-                durationElement.className = 'company-duration';
-                durationElement.textContent = `${job.company} | ${job.duration}`;
-
-                const descriptionElement = document.createElement('ul');
-                // Since the description is markdown, we need a simple way to convert it.
-                // For now, we'll split by newlines to create list items.
-                job.description.split('\n').forEach(line => {
-                    if (line.trim()) { // Ensure not to create empty list items
-                        const listItem = document.createElement('li');
-                        listItem.textContent = line.replace(/^- /, ''); // Remove markdown list characters
-                        descriptionElement.appendChild(listItem);
-                    }
-                });
-
-                jobElement.appendChild(titleElement);
-                jobElement.appendChild(durationElement);
-                jobElement.appendChild(descriptionElement);
-                experienceList.appendChild(jobElement);
-            });
 
             // Populate Skills Section
             const skillsGrid = document.getElementById('skills-grid');
