@@ -36,14 +36,14 @@ collections:
             ]}
           - { label: "Skills & Expertise", name: "skills", widget: "object", fields: [
               { label: "Title", name: "title", widget: "string", default: "Skills & Expertise" },
-              { label: "Skill List", name: "skill_list", widget: "list", field: { label: "Skill", name: "name", widget: "string" } }
+              { label: "Skill List", name: "skill_list", widget: "list", fields: [{ label: "Skill", name: "name", widget: "string" }] }
             ]}
           - { label: "Education & Certifications", name: "education", widget: "object", fields: [
               { label: "Title", name: "title", widget: "string", default: "Education & Certifications" },
               { label: "Institution Name", name: "institution", widget: "string", hint: "e.g., The Higher Institute of E-Commerce Systems" },
               { label: "Description", name: "description", widget: "markdown" },
               { label: "Certifications Title", name: "cert_title", widget: "string", default: "Certificates and Courses" },
-              { label: "Certificates", name: "certificates", widget: "list", field: { label: "Certificate", name: "name", widget: "string" } }
+              { label: "Certificates", name: "certificates", widget: "list", fields: [{ label: "Certificate", name: "name", widget: "string" }] }
             ]}
           - { label: "Contact Section", name: "contact", widget: "object", fields: [
               { label: "Title", name: "title", widget: "string", default: "Get In Touch" }
