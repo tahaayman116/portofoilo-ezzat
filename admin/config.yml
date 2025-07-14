@@ -1,6 +1,8 @@
 backend:
   name: git-gateway
-  branch: main # Branch to update
+  branch: main
+
+register_stylesheet: /admin/style.css # Branch to update
 
 media_folder: "assets/uploads" # Media files will be stored in the repo under assets/uploads
 public_folder: "/assets/uploads" # The src attribute for uploaded media will begin with /assets/uploads
@@ -17,8 +19,25 @@ collections:
           - {label: "Hero Title", name: "hero_title", widget: "string", hint: "e.g., Business Development & E-Commerce Strategist"}
           - {label: "Hero Description", name: "hero_description", widget: "string", hint: "A short sentence describing what you do."}
           - {label: "About Me", name: "about_me", widget: "markdown", hint: "Write the main paragraph about yourself here."}
+          - label: "Work Experience"
+            name: "experience"
+            widget: "list"
+            summary: "{{fields.title}} at {{fields.company}}"
+            fields:
+              - {label: "Job Title", name: "title", widget: "string"}
+              - {label: "Company", name: "company", widget: "string"}
+              - {label: "Duration", name: "duration", widget: "string", hint: "e.g., Jan 2022 - Present"}
+              - {label: "Description", name: "description", widget: "markdown"}
           - label: "Skills"
             name: "skills"
             widget: "list"
             summary: "{{fields.name}}"
             field: {label: "Skill Name", name: "name", widget: "string"}
+          - label: "Contact & CV"
+            name: "contact"
+            widget: "object"
+            fields:
+              - {label: "Email Address", name: "email", widget: "string"}
+              - {label: "Phone Number", name: "phone", widget: "string"}
+              - {label: "LinkedIn URL", name: "linkedin", widget: "string"}
+              - {label: "CV File", name: "cv", widget: "file", media_library: {config: {multiple: false}}}

@@ -1,0 +1,43 @@
+/* Custom styles for Decap CMS Preview Pane */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+body {
+    background-color: #111;
+    color: #eee;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #fff;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-size: 2rem;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+/* Style the preview container to look like a glass panel */
+/* This is a general selector, might need adjustment */
+.nc-preview-container-inner {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 15px !important;
+    padding: 30px !important;
+}
